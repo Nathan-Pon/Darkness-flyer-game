@@ -1,26 +1,28 @@
-# Trial-game-dev
-<!DOCTYPE html>
+# Trial-game-dev<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
 canvas {
     border:1px solid #d3d3d5;
-    background-color: #95C6FE;
+    background-color: #191970;
 }
 </style>
 </head>
 <body onload="startGame()">
 <script>
+
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+
 function startGame() {
-    myGamePiece = new component(30, 30, "black", 10, 120);
+    myGamePiece = new component(50, 30, "black", 10, 120);
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
+
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -35,6 +37,7 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
+
 function component(width, height, color, x, y, type) {
     this.type = type;
     this.score = 0;
@@ -44,7 +47,7 @@ function component(width, height, color, x, y, type) {
     this.speedY = 0;    
     this.x = x;
     this.y = y;
-    this.gravity = 0;
+    this.gravity = 5;
     this.gravitySpeed = 0;
     this.update = function() {
         ctx = myGameArea.context;
@@ -86,6 +89,7 @@ function component(width, height, color, x, y, type) {
         return crash;
     }
 }
+
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
@@ -103,8 +107,8 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        myObstacles.push(new component(30, height, "red", x, 0));
+        myObstacles.push(new component(30, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
@@ -115,10 +119,12 @@ function updateGameArea() {
     myGamePiece.newPos();
     myGamePiece.update();
 }
+
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
+
 function accelerate(n) {
     myGamePiece.gravity = n;
 }
