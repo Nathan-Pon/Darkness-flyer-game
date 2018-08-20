@@ -1,4 +1,4 @@
-# Trial-game-dev<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,9 +17,9 @@ var myObstacles = [];
 var myScore;
 
 function startGame() {
-    myGamePiece = new component(50, 30, "black", 10, 120);
+    myGamePiece = new component(50, 30, "black", 10, 120, 15);
     myGamePiece.gravity = 0.05;
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myScore = new component("30px", "Consolas", "white", 280, 40, "text");
     myGameArea.start();
 }
 
